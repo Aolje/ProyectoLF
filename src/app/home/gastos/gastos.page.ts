@@ -13,6 +13,9 @@ import { NgStyle } from '@angular/common';
 export class GastosPage {
   // mostrar: VisibilityState = "visible";
   mostrar: boolean = false;
+  mostrarPagar: boolean = false;
+  mostrarEliminar: boolean = false;
+  listo: boolean = false;
   id: string;
   //variable suma es la suma de los gastos
   suma;
@@ -44,6 +47,26 @@ export class GastosPage {
           }
         },
         {
+          text: "Pagar",
+          icon: "checkmark-circle",
+          handler: () => {
+            this.listo = true;
+            this.mostrarPagar = !this.mostrarPagar;
+            this.mostrarEliminar = false;
+            console.log(this.id)
+          }
+        },
+        {
+          text: "Eliminar",
+          icon: "trash",
+          handler: () => {
+            this.listo = true;
+            this.mostrarEliminar = !this.mostrarEliminar;
+            this.mostrarPagar = false;
+            console.log(this.id)
+          }
+        },
+        {
           text: "Cancelar",
           icon: "close",
           role: "cancel",
@@ -70,4 +93,9 @@ export class GastosPage {
     this.mostrar = !this.mostrar;   
   }
 
+  listoPE(){
+    this.listo = false;
+    this.mostrarPagar = false;
+    this.mostrarEliminar = false;
+  }
 }
